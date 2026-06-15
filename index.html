@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Odenton Social | Elegant Event Venue</title>
+    <style>
+        /* --- Design Tokens & Variables --- */
+        :root {
+            --primary-navy: #0A192F;
+            --accent-gold: #D4AF37;
+            --light-gold: #F4E8C1;
+            --cream-bg: #FDFBF7;
+            --text-dark: #222222;
+            --text-muted: #555555;
+            --font-serif: 'Playfair Display', Georgia, serif;
+            --font-sans: 'Montserrat', Helvetica, Arial, sans-serif;
+        }
+
+        /* --- Reset & Base Styles --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--cream-bg);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* --- Typography --- */
+        h1, h2, h3 {
+            font-family: var(--font-serif);
+            color: var(--primary-navy);
+            font-weight: 400;
+        }
+
+        /* --- Header / Navigation --- */
+        header {
+            background-color: var(--primary-navy);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid var(--accent-gold);
+        }
+
+        /* Container for Text + Logo Alignment */
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-text {
+            color: var(--accent-gold);
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            letter-spacing: 1px;
+            white-space: nowrap;
+        }
+
+        .logo-img {
+            height: 44px; /* Perfectly scales with the nav header layout */
+            width: auto;
+            object-fit: contain;
+        }
+
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--accent-gold);
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            background: linear-gradient(rgba(10, 25, 47, 0.7), rgba(10, 25, 47, 0.7)), 
+                        url('pix/interiorHall12.jpeg') no-repeat center center/cover;
+            height: 75vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #ffffff;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            color: var(--light-gold);
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            font-style: italic;
+            margin-bottom: 30px;
+            max-width: 600px;
+        }
+
+        .btn {
+            background-color: var(--accent-gold);
+            color: var(--primary-navy);
+            padding: 12px 30px;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 1px;
+            border-radius: 2px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #ffffff;
+            transform: translateY(-2px);
+        }
+
+        /* --- Section Layouts --- */
+        section {
+            padding: 80px 10%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 2px;
+            background-color: var(--accent-gold);
+            margin: 15px auto 40px auto;
+        }
+
+        /* --- Details & Amenities Grid --- */
+        .details-container {
+            display: flex;
+            flex-direction: column;
+            gap: 50px;
+        }
+        
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .detail-card {
+            background: #ffffff;
+            padding: 40px 30px;
+            border-radius: 4px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            border-top: 3px solid var(--accent-gold);
+        }
+
+        .detail-card h3 {
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .detail-card ul {
+            list-style: none;
+            color: var(--text-muted);
+            text-align: left;
+            display: inline-block;
+        }
+
+        .detail-card ul li {
+            margin-bottom: 8px;
+        }
+        
+        /* --- Dynamic Showcase Rows --- */
+        .showcase-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 20px;
+            align-items: center;
+        }
+
+        .showcase-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        .showcase-img-box {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .showcase-img-box img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 4px;
+            border: 1px solid var(--accent-gold);
+        }
+
+        /* --- Gallery Section --- */
+        .gallery {
+            background-color: #f4f1ea;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            height: 260px;
+            background-color: var(--primary-navy);
+            border-radius: 4px;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+            opacity: 0.95;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.03);
+            opacity: 1;
+        }
+
+        /* --- Contact & Booking Form --- */
+        .contact-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 4px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: var(--primary-navy);
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #cccccc;
+            border-radius: 4px;
+            font-family: var(--font-sans);
+        }
+
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-gold);
+        }
+
+        .submit-btn {
+            background-color: var(--primary-navy);
+            color: #ffffff;
+            border: 1px solid var(--accent-gold);
+            width: 100%;
+            padding: 12px;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .submit-btn:hover {
+            background-color: var(--accent-gold);
+            color: var(--primary-navy);
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: var(--primary-navy);
+            color: #ffffff;
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 0.85rem;
+            border-top: 1px solid var(--accent-gold);
+        }
+
+        footer p {
+            color: var(--light-gold);
+        }
+
+        /* --- Responsive Tweaks --- */
+        @media (max-width: 900px) {
+            .showcase-row { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 2.3rem; }
+            .hero p { font-size: 1.1rem; }
+            header { flex-direction: column; gap: 15px; text-align: center; }
+            nav a { margin: 0 10px; }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header>
+        <div class="logo-container">
+            <span class="logo-text">ODENTON SOCIAL</span>
+            <img class="logo-img" src="pix/images2.png" alt="Knights of Columbus Logo">
+        </div>
+        <nav>
+            <a href="#about">The Venue</a>
+            <a href="#gallery">Gallery</a>
+            <a href="#book">Inquire</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Sophisticated Celebrations</h1>
+        <p>A timeless setting designed for life's most unforgettable milestones.</p>
+        <a href="#book" class="btn">Reserve Your Date</a>
+    </section>
+
+    <section id="about">
+        <h2 class="section-title">The Space &amp; Amenities</h2>
+        <div class="details-container">
+            <div class="details-grid">
+                
+                <div class="detail-card">
+                    <h3>Capacity</h3>
+                    <p style="color: var(--text-muted); margin-bottom: 10px;">Versatile seating arrangements tailored to your guest list.</p>
+                    <ul>
+                        <li>• Seated Banquet: Up to 150 Guests</li>
+                        <li>• Cocktail Reception: Up to 250 Guests</li>
+                        <li>• Theater Style Setup: Up to 200 Guests</li>
+                    </ul>
+                </div>
+
+                <div class="detail-card">
+                    <h3>Features</h3>
+                    <p style="color: var(--text-muted); margin-bottom: 10px;">Everything you need for a seamless, beautiful production.</p>
+                    <ul>
+                        <li>• Polished Natural Light Flooring</li>
+                        <li>• Fully Equipped In-House Catering Kitchen</li>
+                        <li>• Integrated Stage Setup Options</li>
+                        <li>• Ample On-Site Parking Facilities</li>
+                    </ul>
+                </div>
+
+                <div class="detail-card">
+                    <h3>Inclusions</h3>
+                    <p style="color: var(--text-muted); margin-bottom: 10px;">Premium details included standard with every venue rental.</p>
+                    <ul>
+                        <li>• High-End Round Tables &amp; Banqueting Chairs</li>
+                        <li>• Flexible Stage Layout Utilities</li>
+                        <li>• Early Access for Vendor Prep &amp; Staging</li>
+                        <li>• On-Site Facility Management Support</li>
+                    </ul>
+                </div>
+
+            </div>
+            
+            <hr style="border: 0; border-top: 1px solid var(--light-gold); margin: 20px 0;">
+
+            <div class="showcase-row">
+                <div class="showcase-text">
+                    <h3>Commercial Culinary Space</h3>
+                    <p style="color: var(--text-muted);">Give your culinary or catering teams the room they need to perform. Odenton Social includes a wide, pristine catering staging kitchen outfitted with professional stainless steel worktables, deep utility sinks, and easily accessible cooling layout paths designed for high-efficiency plating.</p>
+                </div>
+                <div class="showcase-img-box">
+                    <img src="pix/kitchen1.jpeg" alt="Stainless steel commercial kitchen space">
+                    <img src="pix/kitchen2.jpeg" alt="Culinary prep utility stations">
+                </div>
+            </div>
+            
+            <div class="showcase-row">
+                <div class="showcase-img-box">
+                    <img src="pix/interiorHall11.jpeg" alt="Staging area setup view">
+                    <img src="pix/interiorHall9.jpeg" alt="Configured seating facing stage layouts">
+                </div>
+                <div class="showcase-text">
+                    <h3>Customizable Presentation Layouts</h3>
+                    <p style="color: var(--text-muted);">Whether hosting a corporate seminar, community forum, or an intimate performance, our modular design supports simple elevation. Take advantage of focused lighting channels and adaptable presentation focal points to frame your panel or speakers flawlessly.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery" class="gallery">
+        <h2 class="section-title">A Glimpse of the Space</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="pix/interiorHall2.jpeg" alt="Main entrance and flooring sightlines">
+            </div>
+            <div class="gallery-item">
+                <img src="pix/interiorHall5.jpeg" alt="Clean architectural boundaries and walls">
+            </div>
+            <div class="gallery-item">
+                <img src="pix/interiorHall6.jpeg" alt="Bright interior hall perspective">
+            </div>
+            <div class="gallery-item">
+                <img src="pix/interiorHall7.jpeg" alt="Spacious floor setups">
+            </div>
+            <div class="gallery-item">
+                <img src="pix/interiorHall8.jpeg" alt="Room depth and window balance">
+            </div>
+        </div>
+    </section>
+
+    <section id="book">
+        <h2 class="section-title">Inquire About Your Date</h2>
+        <div class="contact-container">
+            <form action="#" method="POST" onsubmit="alert('Thank you for your interest in Odenton Social! In a live website, this inquiry would be sent directly to your email.'); return false;">
+                
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" required placeholder="John Doe">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" required placeholder="johndoe@example.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="event-type">Event Type</label>
+                    <select id="event-type">
+                        <option value="wedding">Wedding / Reception</option>
+                        <option value="gala">Gala / Fundraiser</option>
+                        <option value="corporate">Corporate Function</option>
+                        <option value="party">Private Celebration</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="date">Estimated Date</label>
+                    <input type="date" id="date" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Tell Us About Your Vision</label>
+                    <textarea id="message" rows="4" placeholder="Share any specific details or questions you have..."></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">Submit Inquiry</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Odenton Social. All Rights Reserved.</p>
+        <p style="margin-top: 10px; font-size: 0.75rem; opacity: 0.7;">Exquisite Spaces for Remarkable Moments.</p>
+    </footer>
+
+</body>
+</html>
